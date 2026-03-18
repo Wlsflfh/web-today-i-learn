@@ -7,17 +7,16 @@ const tilList = document.querySelector("#til-list");
 
 // 1. 다크 모드 버튼 생성 및 초기 테마 설정
 const createDarkModeButton = () => {
-  const navLinks = document.querySelector(".nav-links");
+  const navLinks = document.querySelector(".nav-links"); // <ul> 태그 선택
   if (!navLinks) return;
 
-  // 버튼을 담을 li 생성
-  const li = document.createElement("li");
+  const li = document.createElement("li"); // <li> 안에 넣어야 간격이 일정해요
   const toggleBtn = document.createElement("button");
   toggleBtn.className = "theme-toggle";
   toggleBtn.innerText = "🌙";
 
   li.appendChild(toggleBtn);
-  navLinks.appendChild(li); // 메뉴 리스트 맨 끝에 추가
+  navLinks.appendChild(li); // 메뉴 리스트의 마지막 항목으로 추가
 
   const currentTheme = localStorage.getItem("theme");
   if (currentTheme === "dark") {
