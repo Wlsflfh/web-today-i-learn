@@ -1,3 +1,219 @@
 @import "./reset.css";
 @import "./common.css";
 @import "./wiki-layout.css";
+
+/* 1. TIL 전체 섹션 배경 */
+#til {
+    background-color: var(--hero-bg-color); /* 바디보다 약간 더 밝거나 어두운 레이어 */
+    border-radius: 20px; /* 애플 스타일의 둥근 모서리 */
+    padding: 40px;
+    transition: background-color 0.3s ease;
+}
+
+/* 2. TIL 입력 폼 (카드 형태) */
+.til-form {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--divider-color);
+    color: var(--font-default-color);
+    transition: all 0.3s ease;
+}
+
+.til-form label {
+    color: var(--font-default-color);
+}
+
+.til-form input,
+.til-form textarea {
+    background-color: var(--body-bg-color); /* 입력창은 배경색과 반대로 */
+    color: var(--font-default-color);
+    border: 1px solid var(--divider-color);
+}
+
+/* 3. TIL 리스트 아이템 (기존 #fafafa 고정값 제거) */
+.til-item {
+    padding: 24px;
+    background-color: var(--card-bg-color) !important; /* 강제로 변수 적용 */
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 12px 12px 0;
+    color: var(--font-default-color);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.til-item h3 {
+    color: var(--font-default-color);
+    margin-bottom: 8px;
+}
+
+.til-item p {
+    color: var(--font-secondary-color) !important; /* 설명글은 약간 연하게 */
+    line-height: 1.6;
+}
+
+.til-item time {
+    color: var(--font-secondary-color);
+    font-size: 0.85rem;
+}
+
+/* 4. 버튼 디자인 통일 (등록/초기화) */
+.til-form button[type="submit"] {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.til-form button[type="reset"] {
+    background-color: var(--divider-color);
+    color: var(--font-default-color);
+}
+
+/* 1. 변수 재정의 */
+:root {
+    --primary-color: #0071e3;
+    --nav-bg-color: rgba(255, 255, 255, 0.8);
+    --body-bg-color: #ffffff;
+    --hero-bg-color: #fbfbfd;
+    --card-bg-color: #f5f5f7;
+    --font-default-color: #1d1d1f;      /* 메인 글자 (검정) */
+    --font-secondary-color: #6e6e73;    /* 설명글 (진한 회색) */
+    --divider-color: #d2d2d7;
+}
+
+[data-theme="dark"] {
+    --nav-bg-color: rgba(22, 22, 23, 0.8);
+    --body-bg-color: #000000;
+    --hero-bg-color: #161617;
+    --card-bg-color: #1c1c1e;
+    --font-default-color: #f5f5f7;      /* 메인 글자 (흰색) */
+    --font-secondary-color: #a1a1a6;    /* 설명글 (연한 회색) */
+    --divider-color: #424245;
+}
+
+/* 2. 전역 텍스트 설정 */
+body {
+    background-color: var(--body-bg-color);
+    color: var(--font-default-color); /* 전체 글자색 적용 */
+    transition: all 0.3s ease;
+}
+
+/* 3. 설명글(p 태그 등) 색상 변경 */
+.profile-info .tagline,
+.content-section > p,
+.section-desc,
+.work-info p,
+.til-item p {
+    color: var(--font-secondary-color) !important; /* 설명글도 변수 사용 */
+}
+
+/* 4. 링크 색상 (GitHub, Velog 등) */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* 5. 표(Table) 내부 글자색 */
+.info-table th {
+    background-color: var(--card-bg-color);
+    color: var(--font-default-color);
+}
+
+.info-table td {
+    color: var(--font-default-color);
+}
+
+/* 6. TIL 아이템 내부 글자 */
+.til-item h3 {
+    color: var(--font-default-color);
+}
+
+.til-item time {
+    color: var(--font-secondary-color);
+}
+
+/* 7. 입력 폼(Input) 글자색 */
+input, textarea {
+    background-color: var(--card-bg-color);
+    color: var(--font-default-color);
+    border: 1px solid var(--divider-color);
+}
+
+/* 1. 갤러리 그리드 레이아웃 */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열 고정 */
+    gap: 16px; /* 이미지 사이의 간격 (애플은 여백을 중요하게 생각해요) */
+    padding: 20px 0;
+}
+
+/* 2. 개별 이미지 스타일 */
+.gallery-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 정사각형 유지 */
+    object-fit: cover;
+    border-radius: 18px; /* 둥근 모서리 (애플 감성) */
+    background-color: var(--card-bg-color);
+
+    /* 부드러운 전환 효과 */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s ease;
+    cursor: pointer;
+
+    /* 테두리 (다크모드에서 이미지 경계선이 묻히지 않게) */
+    border: 1px solid var(--divider-color);
+}
+
+/* 3. 마우스 올렸을 때 (Hover) 효과 */
+.gallery-grid img:hover {
+    transform: scale(1.04); /* 살짝 커짐 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* 부드러운 그림자 */
+    z-index: 1;
+}
+
+/* 다크 모드일 때 그림자 색상 조절 */
+[data-theme="dark"] .gallery-grid img:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+/* 모달 전체 배경 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* 애플식 반투명 검정 */
+    backdrop-filter: blur(10px); /* 배경 흐리게 */
+    cursor: zoom-out;
+}
+
+/* 확대된 이미지 */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    animation: zoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes zoomIn {
+    from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* 닫기 버튼 */
+.modal-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
