@@ -64,6 +64,7 @@ a {
     padding: 80px 0;
 }
 
+/* [4] 섹션별 상세 스타일 - TIL 업데이트 */
 #til {
     background-color: var(--hero-bg-color);
     border-radius: 20px;
@@ -71,9 +72,32 @@ a {
     margin-top: 40px;
 }
 
-.til-item, .work-card, .info-table th {
+/* TIL 아이템 카드 */
+.til-item {
+    padding: 24px;
     background-color: var(--card-bg-color) !important;
-    color: var(--font-default-color);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* TIL 내부 텍스트 제어 */
+.til-item h3 {
+    color: var(--font-default-color) !important; /* 제목: 흰색/남색 */
+    margin-bottom: 8px;
+}
+
+.til-item time {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--font-secondary-color) !important; /* 날짜: 연회색/중간남색 */
+}
+
+.til-item p {
+    color: var(--font-default-color) !important; /* 설명글: 다크모드에서 확실히 흰색으로! */
+    line-height: 1.6;
+    margin: 0;
 }
 
 .info-table td {
